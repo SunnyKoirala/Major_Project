@@ -2,7 +2,9 @@ const express=require("express");
 const app=express();
 const Listing=require("./models/listing");
 const mongoose=require("mongoose");
-
+const path=require("path");
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname,"views"));
 main().then(()=>{
     console.log("Data saved successfully");
 }).catch((err)=>{
@@ -32,7 +34,11 @@ app.get("/testListing",async(req,res)=>{
     res.send("Saved successfully");
 });
 
-
+//Index Route
+app.get("/listings",async(req,res)=>{
+    const allListings=await Listing.find({});
+    res.render("listings/index",{allListings});
+});
 app.listen(8080,()=>{
     console.log("Server is listening to port no 8080");
 });
