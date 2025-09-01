@@ -6,6 +6,7 @@ const path=require("path");
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
+
 main().then(()=>{
     console.log("Data saved successfully");
 }).catch((err)=>{
@@ -58,6 +59,13 @@ app.get("/listings/:id",async(req,res)=>{
     let {id}=req.params;
     let listing=await Listing.findById(id);
     res.render("listings/show",{listing});
+});
+
+//Edit Route
+app.get("/listings/:id/edit",async(req,res)=>{
+    let{id}=req.params;
+    let listing=await Listing.findById(id);
+    res.render("listings/edit",{listing});
 });
 
 
