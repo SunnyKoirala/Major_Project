@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="/listings/:id?_method=PUT" method="Post">
+    <form action="/listings/<%=listing._id%>?_method=PUT" method="Post">
     <input
       name="listing[title]"
       value="<%=listing.title%>"
