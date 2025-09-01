@@ -5,6 +5,7 @@ const mongoose=require("mongoose");
 const path=require("path");
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
+app.use(express.urlencoded({extended:true}));
 main().then(()=>{
     console.log("Data saved successfully");
 }).catch((err)=>{
@@ -43,6 +44,13 @@ app.get("/listings",async(req,res)=>{
 //New Route
 app.get("/listings/new",(req,res)=>{
     res.render("listings/new");
+});
+
+//Create Route
+app.post("/listings",async(req,res)=>{
+    const newListing=new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listings");
 });
 
 //Show Route
