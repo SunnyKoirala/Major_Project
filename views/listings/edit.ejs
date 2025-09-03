@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <form action="/listings/<%=listing._id%>?_method=PUT" method="Post">
+<%layout("/layouts/boilerplate")%>
+<body>
+  <form action="/listings/<%=listing._id%>?_method=PUT" method="Post">
     <input
       name="listing[title]"
       value="<%=listing.title%>"
@@ -29,7 +23,6 @@
       value="<%=listing.country%>"
       type="text"
     /><br /><br />
-    <button> Edit </button>
-    </form>
-  </body>
-</html>
+    <button>Edit</button>
+  </form>
+</body>
